@@ -1,11 +1,11 @@
 <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-                <defs>
-                    <linearGradient id="phoenixGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" style="stop-color:#FF4500"/>
-                        <stop offset="100%" style="stop-color:#FF4500"/>
-                    </linearGradient>
-                </defs>
-                <path fill="url(#phoenixGradient)" d="M100 20c-44.1 0-80 35.9-80 80s35.9 80 80 80 80-35.9 80-80-35.9-80-80-80zm0 140c-33.1 0-60-26.9-60-60s26.9-60 60-60 60 26.9 60 60-26.9 60-60 60z"/>
-                <path fill="url(#phoenixGradient)" d="M100 40c-33.1 0-60 26.9-60 60 0 33.1 26.9 60 60 60s60-26.9 60-60c0-33.1-26.9-60-60-60zm0 100c-22.1 0-40-17.9-40-40s17.9-40 40-40 40 17.9 40 40-17.9 40-40 40z"/>
-                <path fill="url(#phoenixGradient)" d="M100 60c-22.1 0-40 17.9-40 40s17.9 40 40 40 40-17.9 40-40-17.9-40-40-40zm0 60c-11 0-20-9-20-20s9-20 20-20 20 9 20 20-9 20-20 20z"/>
-            </svg>
+    <defs>
+        <linearGradient id="phoenixGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#FF4500"/>
+            <stop offset="100%" style="stop-color:#FF4500"/>
+        </linearGradient>
+    </defs>
+    <path fill="url(#phoenixGradient)" d="M100 20c-44.1 0-80 35.9-80 80s35.9 80 80 80 80-35.9 80-80-35.9-80-80-80zm0 140c-33.1 0-60-26.9-60-60s26.9-60 60-60 60 26.9 60 60-26.9 60-60 60z"/>
+    <path fill="url(#phoenixGradient)" d="M100 40c-33.1 0-60 26.9-60 60 0 33.1 26.9 60 60 60s60-26.9 60-60c0-33.1-26.9-60-60-60zm0 100c-22.1 0-40-17.9-40-40s17.9-40 40-40 40 17.9 40 40-17.9 40-40 40z"/>
+    <path fill="url(#phoenixGradient)" d="M100 60c-22.1 0-40 17.9-40 40s17.9 40 40 40 40-17.9 40-40-17.9-40-40-40zm0 60c-11 0-20-9-20-20s9-20 20-20 20 9 20 20-9 20-20 20z"/>
+</svg>

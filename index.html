@@ -30,6 +30,7 @@
             padding: 2rem;
             position: relative;
             overflow: hidden;
+            background-color: #FFCA28;
         }
 
         .phoenix-container {
@@ -37,7 +38,7 @@
             margin-bottom: 2rem;
             filter: drop-shadow(0 0 20px rgba(255, 165, 0, 0.5));
         }
-
+        
         h1 {
             font-family: 'Righteous', cursive;
             font-size: 8.5rem;
@@ -51,7 +52,6 @@
             justify-content: center;
         }
 
-        /* Logo styles */
         .logo-svg {
             height: 8.5rem;
             width: auto;
@@ -128,29 +128,36 @@
             color: #444;
         }
 
-        form {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-
-        input, textarea {
-            padding: 0.8rem;
-            border: 2px solid #FF4500;
-            border-radius: 10px;
+        .sponsors {
             background: rgba(255, 255, 255, 0.9);
-            color: #333;
-            font-family: 'Quicksand', sans-serif;
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 2rem;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(255, 69, 0, 0.1);
         }
 
-        input:focus, textarea:focus {
-            outline: none;
-            border-color: #FF5722;
+        .sponsors h2 {
+            font-family: 'Righteous', cursive;
+            color: #FF4500;
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+            text-shadow: 2px 2px 0px #FFF;
+        }
+
+        .footer {
+            background-color: rgba(255, 69, 0, 0.1);
+            text-align: center;
+            padding: 1rem;
+            color: #FF4500;
+            font-family: 'Quicksand', sans-serif;
+            font-weight: 600;
         }
     </style>
 </head>
-<body></body>
-    <a href="https://hackclub.com/"><img style="position: absolute; top: 0; border: 0; width: 256px; z-index: 999;" src="https://assets.hackclub.com/flag-orpheus-left.svg" alt="Hack Club"/></a>
+<body>
+    <a href="https://hackclub.com/"><img style="position: absolute; top: 0; border: 0; width: 128px; z-index: 999;" src="https://assets.hackclub.com/flag-orpheus-left.svg" alt="Hack Club"/></a>
 
     <div class="hero">
         <h1>
@@ -188,8 +195,16 @@
         </div>
     </div>
 
+    <div class="sponsors">
+        <h2>Sponsors</h2>
+        <img src="az-center.png">
+    </div>
+
+    <div class="footer">
+        Made with 🌵 by @pizzalover125.
+    </div>
+
     <script>
-        // FAQ Accordion
         document.querySelectorAll('.faq-item').forEach(item => {
             item.addEventListener('click', () => {
                 const answer = item.querySelector('.faq-answer');
@@ -197,7 +212,6 @@
             });
         });
         
-        // Phoenix Animation
         gsap.to('.phoenix-container', {
             rotation: 360,
             duration: 20,
