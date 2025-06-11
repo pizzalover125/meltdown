@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Meltdown</title>
-    <link href="https://fonts.googleapis.com/css2?family=Righteous&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Righteous&family=Quicksand:wght@400;600&display=swap"
+        rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
     <link rel="icon" type="image/x-icon" href="images/logo.svg">
     <style>
         * {
@@ -21,16 +24,59 @@
             line-height: 1.6;
         }
 
+        #header-container {
+            width: 100%;
+            overflow: hidden;
+        }
+
+        #parallax {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+
+        #back {
+            background-image: url('images/back.png');
+            z-index: 1;
+        }
+
+        #middle {
+            background-image: url('images/middle.png');
+            z-index: 2;
+        }
+
+        #front {
+            background-image: url('images/front.png');
+            z-index: 3;
+        }
+
+        .parallax {
+            background-position: center center;
+            background-size: cover;
+            background-repeat: no-repeat;
+            width: 100%;
+            height: 70vh;
+            position: fixed;
+            top: 0;
+            left: 0;
+        }
+
         .hero {
-            min-height: 100vh;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            padding: 2rem;
             position: relative;
-            overflow: hidden;
-            background-color: #FFCA28;
+            z-index: 10;
+            padding: 2rem;
+        }
+
+        .hero img {
+            width: 60%;
+            height: auto;
         }
 
         .phoenix-container {
@@ -38,7 +84,7 @@
             margin-bottom: 2rem;
             filter: drop-shadow(0 0 20px rgba(255, 165, 0, 0.5));
         }
-        
+
         h1 {
             font-family: 'Righteous', cursive;
             font-size: 8.5rem;
@@ -64,14 +110,14 @@
             font-size: 1.5rem;
             margin-bottom: 2rem;
             text-align: center;
-            color: #FF4500;
+            color: #701e00;
             font-weight: 600;
         }
 
         .rsvp-btn {
             padding: 1rem 2rem;
             font-size: 1.2rem;
-            background: #FF4500;
+            background: #aa2f03;
             border: none;
             border-radius: 50px;
             color: white;
@@ -83,13 +129,21 @@
 
         .rsvp-btn:hover {
             transform: scale(1.05);
-            background: #FF5722;
+            background: #d93e05;
+        }
+
+        #container {
+            width: 100%;
+            z-index: 10;
+            position: relative;
+            background: linear-gradient(135deg, #FFD700, #FFA500);
         }
 
         .faq {
             max-width: 800px;
             margin: 4rem auto;
             padding: 2rem;
+            z-index: 10;
         }
 
         .faq h2 {
@@ -156,68 +210,97 @@
         }
     </style>
 </head>
+
 <body>
-    <a href="https://hackclub.com/"><img style="position: absolute; top: 0; border: 0; width: 128px; z-index: 999;" src="https://assets.hackclub.com/flag-orpheus-left.svg" alt="Hack Club"/></a>
+    <a href="https://hackclub.com/"><img style="position: absolute; top: 0; border: 0; width: 128px; z-index: 999;"
+            src="https://assets.hackclub.com/flag-orpheus-left.svg" alt="Hack Club" /></a>
 
-    <div class="hero">
-        <h1>
-            MELTD
-            <img src="images/logo.svg" alt="O" class="logo-svg">
-            WN
-        </h1>
-        <p class="tagline">Phoenix's Hottest Hackathon Experience • Coming Summer 2025</p>
-        <a href="https://forms.gle/QDhaVY3QnQC7GQDY9" target="_blank">
-            <button class="rsvp-btn">RSVP NOW</button>
-        </a>
-    </div>
-
-    <div class="faq">
-        <h2>FAQ</h2>
-        <div class="faq-item">
-            <div class="faq-question">What is Meltdown?</div>
-            <div class="faq-answer">Meltdown is Phoenix's premier 24-hour hackathon where students come together to build amazing projects.</div>
+    <div id="header-container">
+        <div id="parallax">
+            <div id="back" class="parallax" data-depth="0.1"></div>
+            <div id="middle" class="parallax" data-depth="0.3"></div>
+            <div id="front" class="parallax" data-depth="0.5"></div>
         </div>
-        <div class="faq-item">
-            <div class="faq-question">Who can participate?</div>
-            <div class="faq-answer">Anyone under 18 with a passion for technology and innovation! Whether you're a complete beginner with no experience or a skilled expert, there's room for you!</div>
-        </div>
-        <div class="faq-item">
-            <div class="faq-question">What should I bring?</div>
-            <div class="faq-answer">Bring your laptop, charger, a water bottle, and a positive mindset. We'll provide food, drinks, and a comfortable space to work.</div>
-        </div>
-        <div class="faq-item">
-            <div class="faq-question">Is it free?</div>
-            <div class="faq-answer">Yes! The event is completely free to attend.</div>
-        </div>
-        <div class="faq-item">
-            <div class="faq-question">I have more questions.</div>
-            <div class="faq-answer">Feel free to email me at adichess111@gmail.com or message me on the Hack Club Slack at @pizzalover125.</div>
+        <div class="hero">
+            <!--<h1>
+                MELTD
+                <img src="images/logo.svg" alt="O" class="logo-svg">
+                WN
+            </h1>-->
+            <img src="images/meltdown.gif">
+            <p class="tagline">Phoenix's Hottest Hackathon Experience • Coming Summer 2025</p>
+            <a href="https://forms.gle/QDhaVY3QnQC7GQDY9" target="_blank">
+                <button class="rsvp-btn">RSVP NOW</button>
+            </a>
         </div>
     </div>
 
-    <div class="sponsors">
-        <h2>Sponsors</h2>
-        <img src="images/az-center.png">
-    </div>
+    <div id="container">
+        <div class="faq">
+            <h2>FAQ</h2>
+            <div class="faq-item">
+                <div class="faq-question">What is Meltdown?</div>
+                <div class="faq-answer">Meltdown is Phoenix's premier 24-hour hackathon where students come together to
+                    build amazing projects.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">Who can participate?</div>
+                <div class="faq-answer">Anyone under 18 with a passion for technology and innovation! Whether you're a
+                    complete beginner with no experience or a skilled expert, there's room for you!</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">What should I bring?</div>
+                <div class="faq-answer">Bring your laptop, charger, a water bottle, and a positive mindset. We'll
+                    provide
+                    food, drinks, and a comfortable space to work.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">Is it free?</div>
+                <div class="faq-answer">Yes! The event is completely free to attend.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">I have more questions.</div>
+                <div class="faq-answer">Feel free to email me at adichess111@gmail.com or message me on the Hack Club
+                    Slack
+                    at @pizzalover125.</div>
+            </div>
+        </div>
 
-    <div class="footer">
-        Made with 🌵 by @pizzalover125.
+        <div class="sponsors">
+            <h2>Sponsors</h2>
+            <img src="images/az-center.png">
+        </div>
+
+        <div class="footer">
+            Made with 🌵 by @pizzalover125.
+        </div>
     </div>
 
     <script>
+        gsap.registerPlugin(ScrollTrigger)
+
+        const tl = gsap.timeline({
+            scrollTrigger: {
+                trigger: "#header-container",
+                start: "top top",
+                end: "bottom top",
+                scrub: true
+            }
+        });
+
+        gsap.utils.toArray(".parallax").forEach(layer => {
+            const depth = layer.dataset.depth;
+            const movement = -(layer.offsetHeight * depth)
+            tl.to(layer, { y: movement, ease: "none" }, 0)
+        });
+
         document.querySelectorAll('.faq-item').forEach(item => {
             item.addEventListener('click', () => {
                 const answer = item.querySelector('.faq-answer');
                 answer.style.display = answer.style.display === 'block' ? 'none' : 'block';
             });
         });
-        
-        gsap.to('.phoenix-container', {
-            rotation: 360,
-            duration: 20,
-            repeat: -1,
-            ease: "none"
-        });
     </script>
 </body>
+
 </html>
