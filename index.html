@@ -293,6 +293,13 @@
             const movement = -(layer.offsetHeight * depth)
             tl.to(layer, { y: movement, ease: "none" }, 0)
         });
+
+        document.querySelectorAll('.faq-item').forEach(item => {
+            item.addEventListener('click', () => {
+                const answer = item.querySelector('.faq-answer');
+                answer.style.display = answer.style.display === 'block' ? 'none' : 'block';
+            });
+        });
     </script>
 </body>
 
