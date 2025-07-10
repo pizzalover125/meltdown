@@ -138,77 +138,211 @@
             z-index: 10;
             position: relative;
             background: linear-gradient(135deg, #FFD700, #FFA500);
+            margin-top: 5rem; 
         }
 
-        .faq {
-            max-width: 800px;
-            margin: 4rem auto;
-            margin-top: 0;
-            padding: 2rem;
-            z-index: 10;
+        .about-section {
+            max-width: 900px;
+            margin: 8rem auto 4rem auto;
+            padding: 3rem;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 30px;
+            box-shadow: 0 8px 30px rgba(255, 69, 0, 0.2);
+            backdrop-filter: blur(10px);
         }
 
-        .faq h2 {
+
+        .about-section h2 {
             text-align: center;
             margin-bottom: 2rem;
-            font-size: 2.5rem;
+            font-size: 3rem;
             font-family: 'Righteous', cursive;
             color: #FF4500;
             text-shadow: 2px 2px 0px #FFF;
         }
 
-        .faq-item {
-            background: rgba(255, 255, 255, 0.9);
-            margin-bottom: 1rem;
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+            color: #444;
+            line-height: 1.8;
+        }
+
+        .about-text p {
+            margin-bottom: 1.5rem;
+        }
+
+        .about-highlights {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .highlight-item {
+            background: linear-gradient(135deg, #FF6B35, #FF4500);
+            color: white;
             padding: 1.5rem;
             border-radius: 20px;
-            cursor: pointer;
-            box-shadow: 0 4px 15px rgba(255, 69, 0, 0.1);
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(255, 69, 0, 0.3);
             transition: transform 0.3s ease;
         }
 
+        .highlight-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .highlight-number {
+            font-size: 2rem;
+            font-family: 'Righteous', cursive;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .highlight-text {
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .faq {
+            max-width: 900px;
+            margin: 4rem auto;
+            padding: 3rem;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 30px;
+            box-shadow: 0 8px 30px rgba(255, 69, 0, 0.2);
+            backdrop-filter: blur(10px);
+        }
+
+        .faq h2 {
+            text-align: center;
+            margin-bottom: 3rem;
+            font-size: 3rem;
+            font-family: 'Righteous', cursive;
+            color: #FF4500;
+            text-shadow: 2px 2px 0px #FFF;
+        }
+
+        .faq-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .faq-item {
+            background: linear-gradient(135deg, rgba(255, 107, 53, 0.1), rgba(255, 69, 0, 0.1));
+            border: 2px solid rgba(255, 69, 0, 0.2);
+            padding: 1.5rem;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
         .faq-item:hover {
-            transform: translateY(-2px);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255, 69, 0, 0.3);
+            border-color: #FF4500;
+        }
+
+        .faq-item.active {
+            background: linear-gradient(135deg, rgba(255, 107, 53, 0.2), rgba(255, 69, 0, 0.2));
+            border-color: #FF4500;
         }
 
         .faq-question {
             font-weight: bold;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             margin-bottom: 0.5rem;
             color: #FF4500;
             font-family: 'Righteous', cursive;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .faq-toggle {
+            width: 24px;
+            height: 24px;
+            background: #FF4500;
+            border-radius: 50%;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item.active .faq-toggle {
+            transform: rotate(45deg);
         }
 
         .faq-answer {
-            display: none;
             color: #444;
+            line-height: 1.6;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 200px;
+            margin-top: 1rem;
         }
 
         .sponsors {
-            background: rgba(255, 255, 255, 0.9);
-            max-width: 800px;
-            margin: 2rem auto;
-            padding: 2rem;
-            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.95);
+            max-width: 900px;
+            margin: 4rem auto;
+            padding: 3rem;
+            border-radius: 30px;
             text-align: center;
-            box-shadow: 0 4px 15px rgba(255, 69, 0, 0.1);
+            box-shadow: 0 8px 30px rgba(255, 69, 0, 0.2);
+            backdrop-filter: blur(10px);
         }
 
         .sponsors h2 {
             font-family: 'Righteous', cursive;
             color: #FF4500;
-            margin-bottom: 1.5rem;
-            font-size: 2rem;
+            margin-bottom: 2rem;
+            font-size: 3rem;
             text-shadow: 2px 2px 0px #FFF;
         }
 
         .footer {
             background-color: rgba(255, 69, 0, 0.1);
             text-align: center;
-            padding: 1rem;
+            padding: 2rem;
             color: #FF4500;
             font-family: 'Quicksand', sans-serif;
             font-weight: 600;
+        }
+
+        @media (max-width: 768px) {
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .about-highlights {
+                grid-template-columns: 1fr;
+            }
+            
+            .faq-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .about-section, .faq, .sponsors {
+                margin: 2rem;
+                padding: 2rem;
+            }
         }
     </style>
 </head>
@@ -224,53 +358,112 @@
             <div id="front" class="parallax" data-depth="0.35"></div>
         </div>
         <div class="hero">
-            <!--<h1>
-                MELTD
-                <img src="images/logo.svg" alt="O" class="logo-svg">
-                WN
-            </h1>-->
             <img src="images/meltdown.gif">
             <p class="tagline">Phoenix's Hottest Hackathon Experience • Coming Summer 2025</p>
-            <a href="https://forms.gle/QDhaVY3QnQC7GQDY9" target="_blank">
-                <button class="rsvp-btn">RSVP NOW</button>
+            <a href="https://forms.hackclub.com/t/jeDJvAjiFkus" target="_blank">
+                <button class="rsvp-btn" style="font-size:2rem; padding:1.5rem 3rem;">SIGN UP</button>
             </a>
         </div>
     </div>
 
     <div id="container">
+        <div class="about-section">
+            <h2>What is Meltdown?</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>Meltdown is Phoenix's premier 12-hour hackathon designed to ignite innovation and creativity in the desert heat. This isn't just another coding competition – it's a transformative experience where students push boundaries, forge friendships, and bring their wildest tech ideas to life.</p>
+                    <p>Whether you're a seasoned developer or have never written a line of code, Meltdown provides the perfect environment to learn, create, and showcase your skills. Join us for an unforgettable journey of discovery, collaboration, and innovation.</p>
+                </div>
+                <div class="about-highlights">
+                    <div class="highlight-item">
+                        <span class="highlight-number">12</span>
+                        <span class="highlight-text">Hours of Creation</span>
+                    </div>
+                    <div class="highlight-item">
+                        <span class="highlight-number">Countless</span>
+                        <span class="highlight-text">New Friendships Formed</span>
+                    </div>
+                    <div class="highlight-item">
+                        <span class="highlight-number">∞</span>
+                        <span class="highlight-text">Possibilities</span>
+                    </div>
+                    <div class="highlight-item">
+                        <span class="highlight-number">$0</span>
+                        <span class="highlight-text">Cost to Attend</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div class="faq">
-            <h2>FAQ</h2>
-            <div class="faq-item">
-                <div class="faq-question">What is Meltdown?</div>
-                <div class="faq-answer">Meltdown is Phoenix's premier 24-hour hackathon where students come together to
-                    build amazing projects.</div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-question">Who can participate?</div>
-                <div class="faq-answer">Anyone under 18 with a passion for technology and innovation! Whether you're a
-                    complete beginner with no experience or a skilled expert, there's room for you!</div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-question">What should I bring?</div>
-                <div class="faq-answer">Bring your laptop, charger, a water bottle, and a positive mindset. We'll
-                    provide
-                    food, drinks, and a comfortable space to work.</div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-question">Is it free?</div>
-                <div class="faq-answer">Yes! The event is completely free to attend.</div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-question">I have more questions.</div>
-                <div class="faq-answer">Feel free to email me at adichess111@gmail.com or message me on the Hack Club
-                    Slack
-                    at @pizzalover125.</div>
+            <h2>Frequently Asked Questions</h2>
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Who can participate?
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">Anyone under 18 with a passion for technology and innovation! Whether you're a complete beginner or a coding expert, there's a place for you at Meltdown.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        What should I bring?
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">Bring your laptop, charger, a water bottle, and an open mind. We'll provide food, drinks, WiFi, and a comfortable workspace.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Do I need a team?
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">Not at all! You can work solo or we'll help you find an amazing team during our team formation session at the beginning of the event.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        What can I build?
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">Anything you can imagine! Websites, mobile apps, games, hardware projects, AI tools – the sky's the limit. We'll provide theme prompts to inspire you.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Are there prizes?
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">Yes! We'll have prizes for various categories including Most Creative, Best Beginner Project, and People's Choice. But the real prize is the experience!</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Will there be mentors?
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">Absolutely! We'll have experienced mentors available throughout the event to help with technical challenges, brainstorming, and project guidance.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        What about food?
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">We've got you covered! Meals, snacks, and drinks will be provided throughout the 12 hours. We'll accommodate dietary restrictions too.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Still have questions?
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">Feel free to email me at adichess111@gmail.com or message me on the Hack Club Slack at @pizzalover125. I'm here to help!</div>
+                </div>
             </div>
         </div>
 
         <div class="sponsors">
             <h2>Sponsors</h2>
-            <img src="images/az-center.png">
+            <img src="images/az-center.png" width="50%" height="20%"> <br>
+            <img src="https://hc-cdn.hel1.your-objectstorage.com/s/v3/f7178430df7d7db1fcd17f3d119454c7b8015f5a_image.png" width="20%" height="20%"> <br>
+            <img src="https://hc-cdn.hel1.your-objectstorage.com/s/v3/af0cdb0ead3357ce186edd5e999982ac5211f18b_image_remove_background__1_.png" width="20%" height="20%"><br>
+            <img src="https://hc-cdn.hel1.your-objectstorage.com/s/v3/38ef767066fa71a5431d69d4dc5a054acddd0be5_image.png" width="20%" height="20%"> <br>
+            <img src="https://hc-cdn.hel1.your-objectstorage.com/s/v3/8c26196628c324b5dedef6029e5c7f15e9e04c3d_image.png" width="20%" height="20%"> <br>
         </div>
 
         <div class="footer">
@@ -298,8 +491,43 @@
 
         document.querySelectorAll('.faq-item').forEach(item => {
             item.addEventListener('click', () => {
-                const answer = item.querySelector('.faq-answer');
-                answer.style.display = answer.style.display === 'block' ? 'none' : 'block';
+                const isActive = item.classList.contains('active');
+
+                document.querySelectorAll('.faq-item').forEach(otherItem => {
+                    otherItem.classList.remove('active');
+                });
+                
+                if (!isActive) {
+                    item.classList.add('active');
+                }
+            });
+        });
+
+        gsap.utils.toArray('.about-section, .faq, .sponsors').forEach(section => {
+            gsap.from(section, {
+                opacity: 0,
+                y: 50,
+                duration: 1,
+                scrollTrigger: {
+                    trigger: section,
+                    start: "top 80%",
+                    end: "bottom 20%",
+                    toggleActions: "play none none reverse"
+                }
+            });
+        });
+
+        gsap.utils.toArray('.highlight-item').forEach((item, index) => {
+            gsap.from(item, {
+                opacity: 0,
+                scale: 0.8,
+                duration: 0.6,
+                delay: index * 0.1,
+                scrollTrigger: {
+                    trigger: item,
+                    start: "top 80%",
+                    toggleActions: "play none none reverse"
+                }
             });
         });
     </script>
