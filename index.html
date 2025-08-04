@@ -11,6 +11,9 @@
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
     <link rel="icon" type="image/x-icon" href="images/logo.svg">
     <style>
+        html {
+            scroll-behavior: smooth;
+        }
         * {
             margin: 0;
             padding: 0;
@@ -28,6 +31,7 @@
             width: 100%;
             overflow: hidden;
             height: 100vh;
+            position: relative;
         }
 
         #parallax {
@@ -73,64 +77,59 @@
             position: relative;
             z-index: 10;
             height: 100vh;
+            text-align: center;
         }
 
         .hero img {
             width: 60%;
+            max-width: 420px;
             height: auto;
-        }
-
-        .phoenix-container {
-            width: 300px;
-            margin-bottom: 2rem;
-            filter: drop-shadow(0 0 20px rgba(255, 165, 0, 0.5));
-        }
-
-        h1 {
-            font-family: 'Righteous', cursive;
-            font-size: 8.5rem;
-            margin-bottom: 1rem;
-            text-align: center;
-            color: #FF4500;
-            text-shadow: 3px 3px 0px #FFF;
-            letter-spacing: 2px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .logo-svg {
-            height: 8.5rem;
-            width: auto;
-            display: inline-block;
-            vertical-align: middle;
-            filter: drop-shadow(3px 3px 0px #FFF);
+            margin-bottom: 1.5rem;
+            border-radius: 18px;
+            box-shadow: 0 6px 32px rgba(255, 69, 0, 0.12);
         }
 
         .tagline {
             font-size: 1.5rem;
             margin-bottom: 2rem;
-            text-align: center;
             color: #701e00;
             font-weight: 600;
         }
 
         .rsvp-btn {
-            padding: 1rem 2rem;
-            font-size: 1.2rem;
+            padding: 1.5rem 3rem;
+            font-size: 2rem;
             background: #aa2f03;
             border: none;
             border-radius: 50px;
             color: white;
             cursor: pointer;
-            transition: transform 0.3s ease;
+            transition: transform 0.3s ease, background 0.3s;
             font-family: 'Righteous', cursive;
             box-shadow: 0 4px 15px rgba(255, 69, 0, 0.3);
         }
 
-        .rsvp-btn:hover {
-            transform: scale(1.05);
+        .rsvp-btn:hover,
+        .rsvp-btn:focus {
+            transform: scale(1.07);
             background: #d93e05;
+            outline: none;
+        }
+
+        .scroll-down-arrow {
+            position: absolute;
+            left: 50%;
+            bottom: 32px;
+            transform: translateX(-50%);
+            z-index: 20;
+            cursor: pointer;
+            animation: bounce 1.5s infinite;
+            opacity: 0.85;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateX(-50%) translateY(0);}
+            50% { transform: translateX(-50%) translateY(12px);}
         }
 
         #container {
@@ -138,19 +137,18 @@
             z-index: 10;
             position: relative;
             background: linear-gradient(135deg, #FFD700, #FFA500);
-            margin-top: 5rem; 
+            margin-top: 5rem;
         }
 
         .about-section {
             max-width: 900px;
             margin: 8rem auto 4rem auto;
             padding: 3rem;
-            background: rgba(255, 255, 255, 0.95);
+            background: rgba(255, 255, 255, 0.97);
             border-radius: 30px;
             box-shadow: 0 8px 30px rgba(255, 69, 0, 0.2);
             backdrop-filter: blur(10px);
         }
-
 
         .about-section h2 {
             text-align: center;
@@ -191,11 +189,14 @@
             border-radius: 20px;
             text-align: center;
             box-shadow: 0 4px 15px rgba(255, 69, 0, 0.3);
-            transition: transform 0.3s ease;
+            transition: transform 0.3s ease, box-shadow 0.3s;
         }
 
-        .highlight-item:hover {
-            transform: translateY(-5px);
+        .highlight-item:hover,
+        .highlight-item:focus {
+            transform: translateY(-5px) scale(1.04);
+            box-shadow: 0 8px 30px rgba(255, 69, 0, 0.18);
+            outline: none;
         }
 
         .highlight-number {
@@ -214,7 +215,7 @@
             max-width: 900px;
             margin: 4rem auto;
             padding: 3rem;
-            background: rgba(255, 255, 255, 0.95);
+            background: rgba(255, 255, 255, 0.97);
             border-radius: 30px;
             box-shadow: 0 8px 30px rgba(255, 69, 0, 0.2);
             backdrop-filter: blur(10px);
@@ -241,13 +242,15 @@
             padding: 1.5rem;
             border-radius: 20px;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(.4,2,.6,1);
             position: relative;
             overflow: hidden;
+            outline: none;
         }
 
-        .faq-item:hover {
-            transform: translateY(-3px);
+        .faq-item:hover,
+        .faq-item:focus {
+            transform: translateY(-3px) scale(1.01);
             box-shadow: 0 8px 25px rgba(255, 69, 0, 0.3);
             border-color: #FF4500;
         }
@@ -266,6 +269,7 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
+            cursor: pointer;
         }
 
         .faq-toggle {
@@ -279,6 +283,7 @@
             justify-content: center;
             font-size: 1.2rem;
             transition: transform 0.3s ease;
+            user-select: none;
         }
 
         .faq-item.active .faq-toggle {
@@ -290,16 +295,17 @@
             line-height: 1.6;
             max-height: 0;
             overflow: hidden;
-            transition: max-height 0.3s ease;
+            transition: max-height 0.4s cubic-bezier(.4,2,.6,1), margin-top 0.3s;
+            margin-top: 0;
         }
 
         .faq-item.active .faq-answer {
-            max-height: 200px;
+            max-height: 400px;
             margin-top: 1rem;
         }
 
         .sponsors {
-            background: rgba(255, 255, 255, 0.95);
+            background: rgba(255, 255, 255, 0.97);
             max-width: 900px;
             margin: 4rem auto;
             padding: 3rem;
@@ -317,6 +323,23 @@
             text-shadow: 2px 2px 0px #FFF;
         }
 
+        .sponsor-logos img {
+            width: 20%;
+            min-width: 120px;
+            max-width: 220px;
+            height: auto;
+            margin: 1.2rem 1.5rem;
+            filter: grayscale(0.2) brightness(0.98) drop-shadow(0 2px 8px rgba(255,69,0,0.08));
+            transition: filter 0.3s, transform 0.3s;
+            border-radius: 12px;
+        }
+        .sponsor-logos img:hover,
+        .sponsor-logos img:focus {
+            filter: grayscale(0) brightness(1.08) drop-shadow(0 4px 18px rgba(255,69,0,0.18));
+            transform: scale(1.05);
+            outline: none;
+        }
+
         .footer {
             background-color: rgba(255, 69, 0, 0.1);
             text-align: center;
@@ -326,43 +349,83 @@
             font-weight: 600;
         }
 
+        .back-to-top {
+            position: fixed;
+            right: 2rem;
+            bottom: 2rem;
+            background: #FF4500;
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            width: 48px;
+            height: 48px;
+            font-size: 2rem;
+            cursor: pointer;
+            box-shadow: 0 4px 16px rgba(255,69,0,0.18);
+            z-index: 999;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s, transform 0.3s;
+        }
+        .back-to-top:hover,
+        .back-to-top:focus {
+            background: #d93e05;
+            transform: scale(1.08);
+            outline: none;
+        }
+
         @media (max-width: 768px) {
             .about-content {
                 grid-template-columns: 1fr;
             }
-            
             .about-highlights {
                 grid-template-columns: 1fr;
             }
-            
             .faq-grid {
                 grid-template-columns: 1fr;
             }
-            
             .about-section, .faq, .sponsors {
                 margin: 2rem;
                 padding: 2rem;
+            }
+            .hero img {
+                width: 90%;
+                max-width: 320px;
+            }
+            .sponsor-logos img {
+                width: 40%;
+                min-width: 100px;
+                margin: 1rem 0.5rem;
             }
         }
     </style>
 </head>
 
 <body>
-    <a href="https://hackclub.com/"><img style="position: absolute; top: 0; border: 0; width: 128px; z-index: 999;"
-            src="https://assets.hackclub.com/flag-orpheus-left.svg" alt="Hack Club" /></a>
+    <a href="https://hackclub.com/" aria-label="Hack Club Homepage">
+        <img style="position: absolute; top: 0; border: 0; width: 128px; z-index: 999;"
+            src="https://assets.hackclub.com/flag-orpheus-left.svg" alt="Hack Club" />
+    </a>
 
     <div id="header-container">
-        <div id="parallax">
+        <div id="parallax" aria-hidden="true">
             <div id="back" class="parallax" data-depth="0.05"></div>
             <div id="middle" class="parallax" data-depth="0.2"></div>
             <div id="front" class="parallax" data-depth="0.35"></div>
         </div>
         <div class="hero">
-            <img src="images/meltdown.gif">
+            <img src="images/meltdown.gif" alt="Meltdown Phoenix Hackathon Logo Animation">
             <p class="tagline">Phoenix's Hottest Hackathon Experience • Coming Summer 2025</p>
-            <a href="https://forms.hackclub.com/t/jeDJvAjiFkus" target="_blank">
-                <button class="rsvp-btn" style="font-size:2rem; padding:1.5rem 3rem;">SIGN UP</button>
+            <a href="https://forms.hackclub.com/t/jeDJvAjiFkus" target="_blank" rel="noopener">
+                <button class="rsvp-btn" style="font-size:2rem; padding:1.5rem 3rem;" aria-label="Sign up for Meltdown">SIGN UP</button>
             </a>
+        </div>
+        <div class="scroll-down-arrow" tabindex="0" aria-label="Scroll down" onclick="document.getElementById('container').scrollIntoView({behavior:'smooth'})">
+            <svg width="40" height="40" viewBox="0 0 40 40" aria-hidden="true">
+                <circle cx="20" cy="20" r="19" fill="#fff" opacity="0.7"/>
+                <polyline points="13,18 20,27 27,18" fill="none" stroke="#FF4500" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
         </div>
     </div>
 
@@ -375,19 +438,19 @@
                     <p>Whether you're a seasoned developer or have never written a line of code, Meltdown provides the perfect environment to learn, create, and showcase your skills. Join us for an unforgettable journey of discovery, collaboration, and innovation.</p>
                 </div>
                 <div class="about-highlights">
-                    <div class="highlight-item">
+                    <div class="highlight-item" tabindex="0">
                         <span class="highlight-number">12</span>
                         <span class="highlight-text">Hours of Creation</span>
                     </div>
-                    <div class="highlight-item">
+                    <div class="highlight-item" tabindex="0">
                         <span class="highlight-number">Countless</span>
                         <span class="highlight-text">New Friendships Formed</span>
                     </div>
-                    <div class="highlight-item">
+                    <div class="highlight-item" tabindex="0">
                         <span class="highlight-number">∞</span>
                         <span class="highlight-text">Possibilities</span>
                     </div>
-                    <div class="highlight-item">
+                    <div class="highlight-item" tabindex="0">
                         <span class="highlight-number">$0</span>
                         <span class="highlight-text">Cost to Attend</span>
                     </div>
@@ -398,72 +461,75 @@
         <div class="faq">
             <h2>Frequently Asked Questions</h2>
             <div class="faq-grid">
-                <div class="faq-item">
+                <div class="faq-item" tabindex="0" aria-expanded="false">
                     <div class="faq-question">
                         Who can participate?
-                        <span class="faq-toggle">+</span>
+                        <span class="faq-toggle" aria-hidden="true">+</span>
                     </div>
                     <div class="faq-answer">Anyone under 18 with a passion for technology and innovation! Whether you're a complete beginner or a coding expert, there's a place for you at Meltdown.</div>
                 </div>
-                <div class="faq-item">
+                <div class="faq-item" tabindex="0" aria-expanded="false">
                     <div class="faq-question">
                         What should I bring?
-                        <span class="faq-toggle">+</span>
+                        <span class="faq-toggle" aria-hidden="true">+</span>
                     </div>
                     <div class="faq-answer">Bring your laptop, charger, a water bottle, and an open mind. We'll provide food, drinks, WiFi, and a comfortable workspace.</div>
                 </div>
-                <div class="faq-item">
+                <div class="faq-item" tabindex="0" aria-expanded="false">
                     <div class="faq-question">
                         Do I need a team?
-                        <span class="faq-toggle">+</span>
+                        <span class="faq-toggle" aria-hidden="true">+</span>
                     </div>
                     <div class="faq-answer">Not at all! You can work solo or we'll help you find an amazing team during our team formation session at the beginning of the event.</div>
                 </div>
-                <div class="faq-item">
+                <div class="faq-item" tabindex="0" aria-expanded="false">
                     <div class="faq-question">
                         What can I build?
-                        <span class="faq-toggle">+</span>
+                        <span class="faq-toggle" aria-hidden="true">+</span>
                     </div>
                     <div class="faq-answer">Anything you can imagine! Websites, mobile apps, games, hardware projects, AI tools – the sky's the limit. We'll provide theme prompts to inspire you.</div>
                 </div>
-                <div class="faq-item">
+                <div class="faq-item" tabindex="0" aria-expanded="false">
                     <div class="faq-question">
                         Are there prizes?
-                        <span class="faq-toggle">+</span>
+                        <span class="faq-toggle" aria-hidden="true">+</span>
                     </div>
                     <div class="faq-answer">Yes! We'll have prizes for various categories including Most Creative, Best Beginner Project, and People's Choice. But the real prize is the experience!</div>
                 </div>
-                <div class="faq-item">
+                <div class="faq-item" tabindex="0" aria-expanded="false">
                     <div class="faq-question">
                         Will there be mentors?
-                        <span class="faq-toggle">+</span>
+                        <span class="faq-toggle" aria-hidden="true">+</span>
                     </div>
                     <div class="faq-answer">Absolutely! We'll have experienced mentors available throughout the event to help with technical challenges, brainstorming, and project guidance.</div>
                 </div>
-                <div class="faq-item">
+                <div class="faq-item" tabindex="0" aria-expanded="false">
                     <div class="faq-question">
                         What about food?
-                        <span class="faq-toggle">+</span>
+                        <span class="faq-toggle" aria-hidden="true">+</span>
                     </div>
                     <div class="faq-answer">We've got you covered! Meals, snacks, and drinks will be provided throughout the 12 hours. We'll accommodate dietary restrictions too.</div>
                 </div>
-                <div class="faq-item">
+                <div class="faq-item" tabindex="0" aria-expanded="false">
                     <div class="faq-question">
                         Still have questions?
-                        <span class="faq-toggle">+</span>
+                        <span class="faq-toggle" aria-hidden="true">+</span>
                     </div>
                     <div class="faq-answer">Feel free to email me at adichess111@gmail.com or message me on the Hack Club Slack at @pizzalover125. I'm here to help!</div>
                 </div>
             </div>
         </div>
-
+    
         <div class="sponsors">
             <h2>Sponsors</h2>
-            <img src="images/az-center.png" width="50%" height="20%"> <br>
-            <img src="https://hc-cdn.hel1.your-objectstorage.com/s/v3/f7178430df7d7db1fcd17f3d119454c7b8015f5a_image.png" width="20%" height="20%"> <br>
-            <img src="https://hc-cdn.hel1.your-objectstorage.com/s/v3/af0cdb0ead3357ce186edd5e999982ac5211f18b_image_remove_background__1_.png" width="20%" height="20%"><br>
-            <img src="https://hc-cdn.hel1.your-objectstorage.com/s/v3/38ef767066fa71a5431d69d4dc5a054acddd0be5_image.png" width="20%" height="20%"> <br>
-            <img src="https://hc-cdn.hel1.your-objectstorage.com/s/v3/8c26196628c324b5dedef6029e5c7f15e9e04c3d_image.png" width="20%" height="20%"> <br>
+            <div class="sponsor-logos">
+                <img src="images/az-center.png" alt="Arizona Center" tabindex="0">
+                <img src="https://hc-cdn.hel1.your-objectstorage.com/s/v3/f7178430df7d7db1fcd17f3d119454c7b8015f5a_image.png" alt="Sponsor 2" tabindex="0">
+                <img src="https://hc-cdn.hel1.your-objectstorage.com/s/v3/af0cdb0ead3357ce186edd5e999982ac5211f18b_image_remove_background__1_.png" alt="Sponsor 3" tabindex="0">
+                <img src="https://hc-cdn.hel1.your-objectstorage.com/s/v3/38ef767066fa71a5431d69d4dc5a054acddd0be5_image.png" alt="Sponsor 4" tabindex="0">
+                <img src="https://hc-cdn.hel1.your-objectstorage.com/s/v3/8c26196628c324b5dedef6029e5c7f15e9e04c3d_image.png" alt="Sponsor 5" tabindex="0">
+                <img src="images/xyz-logo-color.png" alt="Sponsor 6">
+            </div>
         </div>
 
         <div class="footer">
@@ -471,8 +537,12 @@
         </div>
     </div>
 
+    <button class="back-to-top" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+        ↑
+    </button>
+
     <script>
-        gsap.registerPlugin(ScrollTrigger)
+        gsap.registerPlugin(ScrollTrigger);
 
         const tl = gsap.timeline({
             scrollTrigger: {
@@ -492,13 +562,19 @@
         document.querySelectorAll('.faq-item').forEach(item => {
             item.addEventListener('click', () => {
                 const isActive = item.classList.contains('active');
-
                 document.querySelectorAll('.faq-item').forEach(otherItem => {
                     otherItem.classList.remove('active');
+                    otherItem.setAttribute('aria-expanded', 'false');
                 });
-                
                 if (!isActive) {
                     item.classList.add('active');
+                    item.setAttribute('aria-expanded', 'true');
+                }
+            });
+            item.addEventListener('keydown', e => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    item.click();
                 }
             });
         });
@@ -529,6 +605,15 @@
                     toggleActions: "play none none reverse"
                 }
             });
+        });
+
+        const backToTop = document.querySelector('.back-to-top');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > window.innerHeight * 0.7) {
+                backToTop.style.display = 'flex';
+            } else {
+                backToTop.style.display = 'none';
+            }
         });
     </script>
 </body>
